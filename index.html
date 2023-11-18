@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <ul class="page__catalog catalog">
+        <li class="catalog__item item">
+          <div class="item__product card">
+            <span class="card__badge">New</span>
+            <div class="card__photo">
+              <img src="images/1.jpg" alt="card photo" />
+            </div>
+            <div class="card__description">
+              <span class="card__category">T-Shirts</span>
+              <div class="card__stars">
+                <div class="card__star star star_full"></div>
+                <div class="card__star star star_full"></div>
+                <div class="card__star star star_full"></div>
+                <div class="card__star star star_half"></div>
+                <div class="card__star star"></div>
+              </div>
+              <span class="card__title">Flared Shift Dress</span>
+              <div class="card__prices">
+                <span class="card__price card__price_new">$14</span>
+                <span class="card__price card__price_old">$24</span>
+              </div>
+            </div>
+          </div>
+          <button class="item__button-add">add to cart</button>
+        </li>
+      </ul>
+    </main>
+  </body>
 </html>

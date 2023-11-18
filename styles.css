@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.page__catalog {
+  margin: 20px auto;
+}
+
+.catalog {
+  display: flex;
+  max-width: 1200px;
+  list-style-type: none;
+}
+
+.catalog__item {
+  padding: 20px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 270px;
+  height: 420px;
+  background-color: #efefef;
+  transition: all 0.5s ease-in-out;
+}
+
+.item__product {
+  flex-grow: 1;
+  padding: 30px 15px 15px;
+}
+
+.item__button-add {
+  transition: all 0.5s ease-in-out;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  background-color: #62a2d2;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+
+  width: 0;
+  height: 0;
+  font-size: 0;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.item:hover .item__button-add {
+  opacity: 1;
+  visibility: visible;
+  width: 150px;
+  height: 30px;
+  font-size: 12px;
+  margin: 20px auto 10px;
+  padding: 5px 10px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  justify-content: space-between;
+  transition: all 0.5s ease-in-out;
+}
+
+.card__badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color:#05a9f4;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  padding: 0 5px;
+  transition: all 0.5s ease-in-out;
+}
+
+.item:hover .card__badge {
+  opacity: 0;
+  visibility: hidden;
+} 
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.card__photo {
+  flex-grow: 1;
+  
+  position: relative;
+  width: 150px;
+  min-height: 100px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+}
+
+.card__photo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+}
+
+.card__category {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #aaa;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__title {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__price_old {
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.card__price_new {
+  color: red;
+  font-weight: 500;
+  margin-right: 5px;
+}
