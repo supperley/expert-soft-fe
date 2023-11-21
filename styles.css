@@ -9,14 +9,35 @@
   line-height: 1.5;
 }
 
+.header {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#ccc;
+}
+
+.header__title {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+}
+
 .page__catalog {
-  margin: 20px auto;
+  margin: 20px;
 }
 
 .catalog {
   display: flex;
+  justify-content: center;
   max-width: 1200px;
   list-style-type: none;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .catalog__item {
@@ -39,7 +60,6 @@
 }
 
 .item__button-add {
-  transition: all 0.5s ease-in-out;
   display: block;
   opacity: 0;
   visibility: hidden;
@@ -47,7 +67,8 @@
   color: #fff;
   border: none;
   text-transform: uppercase;
-
+  
+  transition: all 0.5s ease-in-out;
   width: 0;
   height: 0;
   font-size: 0;
@@ -93,6 +114,7 @@
 } 
 
 .card__description {
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center; 
