@@ -67,6 +67,7 @@
   color: #fff;
   border: none;
   text-transform: uppercase;
+  cursor: pointer;
   
   transition: all 0.5s ease-in-out;
   width: 0;
@@ -84,6 +85,10 @@
   font-size: 12px;
   margin: 20px auto 10px;
   padding: 5px 10px;
+}
+
+.item__button-add:hover {
+  background-color: #86aac6;
 }
 
 .card {
@@ -113,11 +118,65 @@
   visibility: hidden;
 } 
 
+.card__actions {
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  right: 10px;
+  top: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+.item:hover .card__actions {
+  visibility: visible;
+  opacity: 1;
+}
+
+.card__actions-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+
+.card__actions-item:hover {
+  background-color: #cccccc;
+}
+
+.card__actions-item:active {
+  background-color: #aaaaaa;
+}
+
+.card__actions-item_active {
+  background-color: #aaaaaa;
+}
+
+.card__actions-item_active:hover {
+  background-color: #848484;
+}
+
 .card__description {
   max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center; 
+
+  /* floating
+  background-color: #fff;
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  width: 100%;
+  */
 }
 
 .card__photo {
@@ -149,6 +208,27 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.card__stars {
+  position: relative;
+  height: 20px;
+}
+
+.card__stars-disabled {
+  white-space: nowrap;
+}
+
+.card__stars-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  white-space: nowrap;
+
+  color: #fab404;
 }
 
 .card__title {
