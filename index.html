@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shop</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -15,144 +15,234 @@
       <h1 class="header__title">Bookshop</h1>
     </header>
     <main class="page">
-      <ul class="page__catalog catalog">
-        <li class="catalog__item item">
-          <div class="item__product card">
-            <span class="card__badge">New</span>
-            <div class="card__actions">
-              <div class="card__actions-item card__actions-item_active">
+      <ul class="page__catalog product-catalog">
+        <li class="product-catalog__item product-item">
+          <div class="product-item__card product-card">
+            <span class="product-card__badge">New</span>
+            <div class="product-card__actions">
+              <div class="product-card__actions-item product-card__actions-item_active">
                 <i class="fa-regular fa-eye"></i>
               </div>
-              <div class="card__actions-item">
+              <div class="product-card__actions-item">
                 <i class="fa-regular fa-heart"></i>
               </div>
-              <div class="card__actions-item">
+              <div class="product-card__actions-item">
                 <i class="fa-solid fa-scale-balanced"></i>
               </div>
             </div>
-            <div class="card__photo">
-              <img src="images/1.jpg" alt="card photo" />
+            <div class="product-card__photo-container">
+              <img class="product-card__photo" src="assets/images/1.jpg" alt="product-card photo" />
             </div>
-            <div class="card__description">
-              <span class="card__category">T-Shirts</span>
-              <div class="card__stars">
-                <div class="card__stars-disabled">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+            <div class="product-card__description">
+              <span class="product-card__category">T-Shirts</span>
+              <div class="product-card__stars-container">
+                <div class="product-stars">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
                 </div>
-                <div class="card__stars-active" style="width: 88%">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+                <div class="product-stars product-stars_active" style="width: 88%">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
                 </div>
               </div>
-              <span class="card__title">Flared Shift Dress</span>
-              <div class="card__prices">
-                <span class="card__price card__price_new">$14</span>
-                <span class="card__price card__price_old">$24</span>
+              <span class="product-card__title">Flared Shift Dress</span>
+              <div class="product-card__prices">
+                <span class="product-card__price product-card__price_new">$14</span>
+                <span class="product-card__price product-card__price_old">$24</span>
               </div>
             </div>
           </div>
-          <button class="item__button-add">
+          <button class="product-item__button-add">
             <i class="fa-solid fa-cart-shopping"></i> add to cart
           </button>
         </li>
-        <li class="catalog__item item">
-          <div class="item__product card">
-            <span class="card__badge">New</span>
-            <div class="card__actions">
-              <div class="card__actions-item">
+        <li class="product-catalog__item product-item">
+          <div class="product-item__card product-card">
+            <span class="product-card__badge">New</span>
+            <div class="product-card__actions">
+              <div class="product-card__actions-item">
                 <i class="fa-regular fa-eye"></i>
               </div>
-              <div class="card__actions-item">
+              <div class="product-card__actions-item">
                 <i class="fa-regular fa-heart"></i>
               </div>
-              <div class="card__actions-item">
+              <div class="product-card__actions-item">
                 <i class="fa-solid fa-scale-balanced"></i>
               </div>
             </div>
-            <div class="card__photo">
-              <img src="images/2.jpg" alt="card photo" />
+            <div class="product-card__photo-container">
+              <img class="product-card__photo" src="assets/images/2.jpg" alt="product-card photo" />
             </div>
-            <div class="card__description">
-              <span class="card__category">T-Shirts</span>
-              <div class="card__stars">
-                <div class="card__stars-disabled">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+            <div class="product-card__description">
+              <span class="product-card__category">T-Shirts</span>
+              <div class="product-card__stars-container">
+                <div class="product-stars">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
                 </div>
-                <div class="card__stars-active" style="width: 53%">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+                <div class="product-stars product-stars_active" style="width: 53%">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
                 </div>
               </div>
-              <span class="card__title">Flared Shift Dress</span>
-              <div class="card__prices">
-                <span class="card__price card__price_new">$14</span>
-                <span class="card__price card__price_old">$24</span>
+              <span class="product-card__title">Flared Shift Dress</span>
+              <div class="product-card__prices">
+                <span class="product-card__price product-card__price_new">$14</span>
+                <span class="product-card__price product-card__price_old">$24</span>
               </div>
             </div>
           </div>
-          <button class="item__button-add">
+          <button class="product-item__button-add">
             <i class="fa-solid fa-cart-shopping"></i> add to cart
           </button>
         </li>
-        <li class="catalog__item item">
-          <div class="item__product card">
-            <span class="card__badge">New</span>
-            <div class="card__actions">
-              <div class="card__actions-item">
+        <li class="product-catalog__item product-item">
+          <div class="product-item__card product-card">
+            <span class="product-card__badge">New</span>
+            <div class="product-card__actions">
+              <div class="product-card__actions-item">
                 <i class="fa-regular fa-eye"></i>
               </div>
-              <div class="card__actions-item">
+              <div class="product-card__actions-item">
                 <i class="fa-regular fa-heart"></i>
               </div>
-              <div class="card__actions-item">
+              <div class="product-card__actions-item">
                 <i class="fa-solid fa-scale-balanced"></i>
               </div>
             </div>
-            <div class="card__photo">
-              <img src="images/4.jpg" alt="card photo" />
+            <div class="product-card__photo-container">
+              <img class="product-card__photo" src="assets/images/3.jpg" alt="product-card photo" />
             </div>
-            <div class="card__description">
-              <span class="card__category">T-Shirts T-Shirts T-Shirts T-Shirts T-Shirts</span>
-              <div class="card__stars">
-                <div class="card__stars-disabled">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+            <div class="product-card__description">
+              <span class="product-card__category">T-Shirts</span>
+              <div class="product-card__stars-container">
+                <div class="product-stars">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
                 </div>
-                <div class="card__stars-active" style="width: 75%">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+                <div class="product-stars product-stars_active" style="width: 75%">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
                 </div>
               </div>
-              <span class="card__title"
-                >Flared Shift Dress Flared Shift Dress Flared Shift Dress</span
-              >
-              <div class="card__prices">
-                <span class="card__price card__price_new">$14</span>
-                <span class="card__price card__price_old">$24</span>
+              <span class="product-card__title">Flared Shift Dress</span>
+              <div class="product-card__prices">
+                <span class="product-card__price product-card__price_new">$14</span>
+                <span class="product-card__price product-card__price_old">$24</span>
               </div>
             </div>
           </div>
-          <button class="item__button-add">
+          <button class="product-item__button-add">
+            <i class="fa-solid fa-cart-shopping"></i> add to cart
+          </button>
+        </li>
+        <li class="product-catalog__item product-item">
+          <div class="product-item__card product-card">
+            <span class="product-card__badge">New</span>
+            <div class="product-card__actions">
+              <div class="product-card__actions-item">
+                <i class="fa-regular fa-eye"></i>
+              </div>
+              <div class="product-card__actions-item">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+              <div class="product-card__actions-item">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
+            </div>
+            <div class="product-card__photo-container">
+              <img class="product-card__photo" src="assets/images/4.jpg" alt="product-card photo" />
+            </div>
+            <div class="product-card__description">
+              <span class="product-card__category">T-Shirts</span>
+              <div class="product-card__stars-container">
+                <div class="product-stars">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                </div>
+                <div class="product-stars product-stars_active" style="width: 44%">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                </div>
+              </div>
+              <span class="product-card__title">Flared Shift Dress</span>
+              <div class="product-card__prices">
+                <span class="product-card__price product-card__price_new">$14</span>
+                <span class="product-card__price product-card__price_old">$24</span>
+              </div>
+            </div>
+          </div>
+          <button class="product-item__button-add">
+            <i class="fa-solid fa-cart-shopping"></i> add to cart
+          </button>
+        </li>
+        <li class="product-catalog__item product-item">
+          <div class="product-item__card product-card">
+            <span class="product-card__badge">New</span>
+            <div class="product-card__actions">
+              <div class="product-card__actions-item">
+                <i class="fa-regular fa-eye"></i>
+              </div>
+              <div class="product-card__actions-item">
+                <i class="fa-regular fa-heart"></i>
+              </div>
+              <div class="product-card__actions-item">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
+            </div>
+            <div class="product-card__photo-container">
+              <img class="product-card__photo" src="assets/images/5.jpg" alt="product-card photo" />
+            </div>
+            <div class="product-card__description">
+              <span class="product-card__category">T-Shirts</span>
+              <div class="product-card__stars-container">
+                <div class="product-stars">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                </div>
+                <div class="product-stars product-stars_active" style="width: 50%">
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                  <i class="product-stars__star fa-solid fa-star"></i>
+                </div>
+              </div>
+              <span class="product-card__title">Flared Shift Dress</span>
+              <div class="product-card__prices">
+                <span class="product-card__price product-card__price_new">$14</span>
+                <span class="product-card__price product-card__price_old">$24</span>
+              </div>
+            </div>
+          </div>
+          <button class="product-item__button-add">
             <i class="fa-solid fa-cart-shopping"></i> add to cart
           </button>
         </li>
