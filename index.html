@@ -15,18 +15,43 @@
       <h1 class="header__title">Bookshop</h1>
     </header>
     <main class="page">
+      <div class="page__filter product-filter">
+        <div class="product-filter__buttons">
+          <button
+            id="allBtn"
+            class="product-filter__button product-filter__button_active"
+            onclick="filterProducts('all')"
+          >
+            All
+          </button>
+          <button id="favBtn" class="product-filter__button" onclick="filterProducts('favourites')">
+            Favourites
+          </button>
+          <button
+            id="compBtn"
+            class="product-filter__button"
+            onclick="filterProducts('comparison')"
+          >
+            Comparison
+          </button>
+        </div>
+        <label class="product-filter__checkbox filter-checkbox" for="showHiddenCheckbox">
+          <input type="checkbox" onclick="toggleShowHidden()" id="showHiddenCheckbox" />
+          <span class="filter-checkbox__label">Show hidden</span>
+        </label>
+      </div>
       <ul class="page__catalog product-catalog">
-        <li class="product-catalog__item product-item">
+        <li class="product-catalog__item product-item" id="product1">
           <div class="product-item__card product-card">
             <span class="product-card__badge">New</span>
             <div class="product-card__actions">
-              <div class="product-card__actions-item product-card__actions-item_active">
+              <div class="product-card__actions-item" onclick="toggleVisibility(event, 'product1')">
                 <i class="fa-regular fa-eye"></i>
               </div>
-              <div class="product-card__actions-item">
+              <div class="product-card__actions-item" onclick="toggleFavourite(event, 'product1')">
                 <i class="fa-regular fa-heart"></i>
               </div>
-              <div class="product-card__actions-item">
+              <div class="product-card__actions-item" onclick="toggleComparison(event, 'product1')">
                 <i class="fa-solid fa-scale-balanced"></i>
               </div>
             </div>
@@ -62,7 +87,7 @@
             <i class="fa-solid fa-cart-shopping"></i> add to cart
           </button>
         </li>
-        <li class="product-catalog__item product-item">
+        <li class="product-catalog__item product-item" id="product2">
           <div class="product-item__card product-card">
             <span class="product-card__badge">New</span>
             <div class="product-card__actions">
@@ -248,5 +273,6 @@
         </li>
       </ul>
     </main>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
