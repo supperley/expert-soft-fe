@@ -121,11 +121,27 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.product-item:hover .product-item__button-add {
+  opacity: 1;
+  visibility: visible;
   width: 150px;
   height: 30px;
   font-size: 12px;
   margin: 20px auto 10px;
   padding: 5px 10px;
+}
+
+.product-item__button-add:hover {
+  background-color: #62a2d2;
 }
 
 .product-item__button-add:active {
@@ -152,7 +168,14 @@
   color: #fff;
   padding: 0 5px;
   transition: all 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
 }
+
+.product-item:hover .product-card__badge {
+  opacity: 1;
+  visibility: visible;
+} 
 
 .product-card__actions {
   position: absolute;
@@ -279,43 +302,7 @@
 .product-card__price_new {
   color: red;
   margin-right: 5px;
-}
-
-@media (hover: hover) {
-  .product-item__button-add {
-    visibility: hidden;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    font-size: 0;
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  .product-item__button-add:hover {
-    background-color: #62a2d2;
-  }
-
-  .product-item:hover .product-item__button-add {
-    opacity: 1;
-    visibility: visible;
-    width: 150px;
-    height: 30px;
-    font-size: 12px;
-    margin: 20px auto 10px;
-    padding: 5px 10px;
-  }
-
-  .product-card__badge {
-    opacity: 0;
-    visibility: hidden;
-  } 
-
-  .product-item:hover .product-card__badge {
-    opacity: 1;
-    visibility: visible;
-  } 
-}
+} 
 
 @media (min-width: 620px) {
   .product-catalog {
