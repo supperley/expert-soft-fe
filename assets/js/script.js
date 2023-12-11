@@ -91,18 +91,48 @@ const productData = [
   },
 ];
 
-for (let product of productData) {
-  const productItem = createProductItem(product);
-  document.querySelector('.product-catalog').appendChild(productItem);
-}
-
-const allProductCards = document.querySelectorAll('.product-item');
-
+let productItems = [];
 let hiddenProducts = [];
 let favouriteProducts = [];
 let comparisonProducts = [];
 let showHidden = false;
 let filterType = 'all';
+
+document.addEventListener('DOMContentLoaded', function () {
+  loadStateFromLocalStorage();
+
+  if (showHidden) {
+    document.querySelector('.filter-checkbox__input').checked = true;
+  }
+
+  for (let product of productData) {
+    const productItem = createProductItem(product);
+    setBadgesState(productItem);
+    productItems.push(productItem);
+  }
+
+  filterProducts(filterType);
+
+  for (let productItem of productItems) {
+    document.querySelector('.product-catalog').appendChild(productItem);
+  }
+});
+
+function loadStateFromLocalStorage() {
+  hiddenProducts = JSON.parse(localStorage.getItem('hiddenProducts')) || [];
+  favouriteProducts = JSON.parse(localStorage.getItem('favouriteProducts')) || [];
+  comparisonProducts = JSON.parse(localStorage.getItem('comparisonProducts')) || [];
+  showHidden = JSON.parse(localStorage.getItem('showHidden')) || false;
+  filterType = JSON.parse(localStorage.getItem('filterType')) || 'all';
+}
+
+function saveStateToLocalStorage() {
+  localStorage.setItem('hiddenProducts', JSON.stringify(hiddenProducts));
+  localStorage.setItem('favouriteProducts', JSON.stringify(favouriteProducts));
+  localStorage.setItem('comparisonProducts', JSON.stringify(comparisonProducts));
+  localStorage.setItem('showHidden', JSON.stringify(showHidden));
+  localStorage.setItem('filterType', JSON.stringify(filterType));
+}
 
 function createProductItem(product) {
   const productItem = document.createElement('li');
@@ -162,6 +192,26 @@ function createProductItem(product) {
 
   productItem.innerHTML = productItemHTML;
   return productItem;
+}
+
+function setBadgesState(productItem) {
+  if (hiddenProducts.includes(productItem.id)) {
+    productItem
+      .querySelector('.product-card__actions-item:nth-child(1)')
+      .classList.add('product-card__actions-item_active');
+  }
+
+  if (favouriteProducts.includes(productItem.id)) {
+    productItem
+      .querySelector('.product-card__actions-item:nth-child(2)')
+      .classList.add('product-card__actions-item_active');
+  }
+
+  if (comparisonProducts.includes(productItem.id)) {
+    productItem
+      .querySelector('.product-card__actions-item:nth-child(3)')
+      .classList.add('product-card__actions-item_active');
+  }
 }
 
 function toggleVisibility(e, productId) {
@@ -239,20 +289,22 @@ function filterProducts(newFilterType) {
     default:
       break;
   }
+
+  saveStateToLocalStorage();
 }
 
 function showAllProducts() {
-  allProductCards.forEach((productCard) => {
-    productCard.classList.remove('product-item_deleted');
-    productCard.classList.remove('product-item_hidden');
+  productItems.forEach((productItem) => {
+    productItem.classList.remove('product-item_deleted');
+    productItem.classList.remove('product-item_hidden');
 
-    if (hiddenProducts.includes(productCard.id)) {
+    if (hiddenProducts.includes(productItem.id)) {
       if (showHidden) {
         // Hide product marked as hidden
-        productCard.classList.add('product-item_hidden');
+        productItem.classList.add('product-item_hidden');
       } else {
         // Delete hidden
-        productCard.classList.add('product-item_deleted');
+        productItem.classList.add('product-item_deleted');
       }
     }
   });
@@ -261,7 +313,7 @@ function showAllProducts() {
 function showFavouriteProducts() {
   showAllProducts();
 
-  allProductCards.forEach((element) => {
+  productItems.forEach((element) => {
     if (!favouriteProducts.includes(element.id)) {
       element.classList.add('product-item_deleted');
     }
@@ -271,7 +323,7 @@ function showFavouriteProducts() {
 function showComparisonProducts() {
   showAllProducts();
 
-  allProductCards.forEach((element) => {
+  productItems.forEach((element) => {
     if (!comparisonProducts.includes(element.id)) {
       element.classList.add('product-item_deleted');
     }
