@@ -91,12 +91,26 @@ const productData = [
   },
 ];
 
+const HIDDEN_PRODUCTS_KEY = 'hiddenProducts';
+const FAVOURITE_PRODUCTS_KEY = 'favouriteProducts';
+const COMPARISON_PRODUCTS_KEY = 'comparisonProducts';
+const SHOW_HIDDEN_KEY = 'showHidden';
+const FILTER_TYPE_KEY = 'filterType';
+const FILTER_ALL = 'all';
+const FILTER_HIDDEN = 'hidden';
+const FILTER_FAVOURITE = 'favourite';
+const FILTER_COMPARISON = 'comparison';
+
 let productItems = [];
 let hiddenProducts = [];
 let favouriteProducts = [];
 let comparisonProducts = [];
-let showHidden = false;
-let filterType = 'all';
+let showHidden = true;
+let filterType = FILTER_ALL;
+
+const allBtn = document.getElementById('allBtn');
+const favBtn = document.getElementById('favBtn');
+const compBtn = document.getElementById('compBtn');
 
 document.addEventListener('DOMContentLoaded', function () {
   loadStateFromLocalStorage();
@@ -119,19 +133,19 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function loadStateFromLocalStorage() {
-  hiddenProducts = JSON.parse(localStorage.getItem('hiddenProducts')) || [];
-  favouriteProducts = JSON.parse(localStorage.getItem('favouriteProducts')) || [];
-  comparisonProducts = JSON.parse(localStorage.getItem('comparisonProducts')) || [];
-  showHidden = JSON.parse(localStorage.getItem('showHidden')) || false;
-  filterType = JSON.parse(localStorage.getItem('filterType')) || 'all';
+  hiddenProducts = JSON.parse(localStorage.getItem(HIDDEN_PRODUCTS_KEY)) || [];
+  favouriteProducts = JSON.parse(localStorage.getItem(FAVOURITE_PRODUCTS_KEY)) || [];
+  comparisonProducts = JSON.parse(localStorage.getItem(COMPARISON_PRODUCTS_KEY)) || [];
+  showHidden = JSON.parse(localStorage.getItem(SHOW_HIDDEN_KEY)) || false;
+  filterType = JSON.parse(localStorage.getItem(FILTER_TYPE_KEY)) || 'all';
 }
 
 function saveStateToLocalStorage() {
-  localStorage.setItem('hiddenProducts', JSON.stringify(hiddenProducts));
-  localStorage.setItem('favouriteProducts', JSON.stringify(favouriteProducts));
-  localStorage.setItem('comparisonProducts', JSON.stringify(comparisonProducts));
-  localStorage.setItem('showHidden', JSON.stringify(showHidden));
-  localStorage.setItem('filterType', JSON.stringify(filterType));
+  localStorage.setItem(HIDDEN_PRODUCTS_KEY, JSON.stringify(hiddenProducts));
+  localStorage.setItem(FAVOURITE_PRODUCTS_KEY, JSON.stringify(favouriteProducts));
+  localStorage.setItem(COMPARISON_PRODUCTS_KEY, JSON.stringify(comparisonProducts));
+  localStorage.setItem(SHOW_HIDDEN_KEY, JSON.stringify(showHidden));
+  localStorage.setItem(FILTER_TYPE_KEY, JSON.stringify(filterType));
 }
 
 function createProductItem(product) {
@@ -139,17 +153,23 @@ function createProductItem(product) {
   productItem.classList.add('product-catalog__item', 'product-item');
   productItem.id = product.id;
 
-  const productItemHTML = `
+  productItem.innerHTML = `
     <div class="product-item__card product-card">
       <span class="product-card__badge">New</span>
       <div class="product-card__actions">
-        <div class="product-card__actions-item" onclick="toggleVisibility(event, '${product.id}')">
+        <div class="product-card__actions-item" onclick="toggleStatus(event, '${
+          product.id
+        }', '${FILTER_HIDDEN}')">
           <i class="fa-regular fa-eye"></i>
         </div>
-        <div class="product-card__actions-item" onclick="toggleFavourite(event, '${product.id}')">
+        <div class="product-card__actions-item" onclick="toggleStatus(event, '${
+          product.id
+        }', '${FILTER_FAVOURITE}')">
           <i class="fa-regular fa-heart"></i>
         </div>
-        <div class="product-card__actions-item" onclick="toggleComparison(event, '${product.id}')">
+        <div class="product-card__actions-item" onclick="toggleStatus(event, '${
+          product.id
+        }', '${FILTER_COMPARISON}')">
           <i class="fa-solid fa-scale-balanced"></i>
         </div>
       </div>
@@ -190,7 +210,6 @@ function createProductItem(product) {
     </button>
   `;
 
-  productItem.innerHTML = productItemHTML;
   return productItem;
 }
 
@@ -214,43 +233,25 @@ function setBadgesState(productItem) {
   }
 }
 
-function toggleVisibility(e, productId) {
-  const index = hiddenProducts.indexOf(productId);
+function toggleStatus(event, productId, statusType) {
+  let specificProducts;
 
-  if (index === -1) {
-    hiddenProducts.push(productId);
-    e.currentTarget.classList.add('product-card__actions-item_active');
-  } else {
-    hiddenProducts.splice(index, 1);
-    e.currentTarget.classList.remove('product-card__actions-item_active');
+  if (statusType === FILTER_HIDDEN) {
+    specificProducts = hiddenProducts;
+  } else if (statusType === FILTER_FAVOURITE) {
+    specificProducts = favouriteProducts;
+  } else if (statusType === FILTER_COMPARISON) {
+    specificProducts = comparisonProducts;
   }
 
-  filterProducts(filterType);
-}
-
-function toggleFavourite(e, productId) {
-  const index = favouriteProducts.indexOf(productId);
+  const index = specificProducts.indexOf(productId);
 
   if (index === -1) {
-    favouriteProducts.push(productId);
-    e.currentTarget.classList.add('product-card__actions-item_active');
+    specificProducts.push(productId);
+    event.currentTarget.classList.add('product-card__actions-item_active');
   } else {
-    favouriteProducts.splice(index, 1);
-    e.currentTarget.classList.remove('product-card__actions-item_active');
-  }
-
-  filterProducts(filterType);
-}
-
-function toggleComparison(e, productId) {
-  const index = comparisonProducts.indexOf(productId);
-
-  if (index === -1) {
-    comparisonProducts.push(productId);
-    e.currentTarget.classList.add('product-card__actions-item_active');
-  } else {
-    comparisonProducts.splice(index, 1);
-    e.currentTarget.classList.remove('product-card__actions-item_active');
+    specificProducts.splice(index, 1);
+    event.currentTarget.classList.remove('product-card__actions-item_active');
   }
 
   filterProducts(filterType);
@@ -265,26 +266,22 @@ function toggleShowHidden() {
 function filterProducts(newFilterType) {
   filterType = newFilterType;
 
-  const allBtn = document.getElementById('allBtn');
-  const favBtn = document.getElementById('favBtn');
-  const compBtn = document.getElementById('compBtn');
-
   allBtn.classList.remove('product-filter__button_active');
   favBtn.classList.remove('product-filter__button_active');
   compBtn.classList.remove('product-filter__button_active');
 
   switch (filterType) {
-    case 'all':
+    case FILTER_ALL:
       allBtn.classList.add('product-filter__button_active');
-      showAllProducts();
+      showProducts();
       break;
-    case 'favourites':
+    case FILTER_FAVOURITE:
       favBtn.classList.add('product-filter__button_active');
-      showFavouriteProducts();
+      showProducts(FILTER_FAVOURITE);
       break;
-    case 'comparison':
+    case FILTER_COMPARISON:
       compBtn.classList.add('product-filter__button_active');
-      showComparisonProducts();
+      showProducts(FILTER_COMPARISON);
       break;
     default:
       break;
@@ -293,7 +290,7 @@ function filterProducts(newFilterType) {
   saveStateToLocalStorage();
 }
 
-function showAllProducts() {
+function showProducts(productType = FILTER_ALL) {
   productItems.forEach((productItem) => {
     productItem.classList.remove('product-item_deleted');
     productItem.classList.remove('product-item_hidden');
@@ -308,24 +305,20 @@ function showAllProducts() {
       }
     }
   });
-}
 
-function showFavouriteProducts() {
-  showAllProducts();
+  if (productType != FILTER_ALL) {
+    let specificProducts;
 
-  productItems.forEach((element) => {
-    if (!favouriteProducts.includes(element.id)) {
-      element.classList.add('product-item_deleted');
+    if (productType === FILTER_FAVOURITE) {
+      specificProducts = favouriteProducts;
+    } else if (productType === FILTER_COMPARISON) {
+      specificProducts = comparisonProducts;
     }
-  });
-}
 
-function showComparisonProducts() {
-  showAllProducts();
-
-  productItems.forEach((element) => {
-    if (!comparisonProducts.includes(element.id)) {
-      element.classList.add('product-item_deleted');
-    }
-  });
+    productItems.forEach((element) => {
+      if (!specificProducts.includes(element.id)) {
+        element.classList.add('product-item_deleted');
+      }
+    });
+  }
 }
