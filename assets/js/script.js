@@ -101,7 +101,20 @@ const FILTER_HIDDEN = 'hidden';
 const FILTER_FAVOURITE = 'favourite';
 const FILTER_COMPARISON = 'comparison';
 
+let productItems = [];
+let hiddenProducts = [];
+let favouriteProducts = [];
+let comparisonProducts = [];
+let showHidden = true;
+let filterType = FILTER_ALL;
+
 const checkboxShowHidden = document.querySelector('#checkboxShowHidden');
+
+checkboxShowHidden.addEventListener('click', function () {
+  showHidden = !showHidden;
+
+  filterProducts(filterType);
+});
 
 const btnFilterAll = document.querySelector('#btnFilterAll');
 
@@ -120,13 +133,6 @@ const btnFilterComparison = document.querySelector('#btnFilterComparison');
 btnFilterComparison.addEventListener('click', function () {
   filterProducts(FILTER_COMPARISON);
 });
-
-let productItems = [];
-let hiddenProducts = [];
-let favouriteProducts = [];
-let comparisonProducts = [];
-let showHidden = true;
-let filterType = FILTER_ALL;
 
 document.addEventListener('DOMContentLoaded', function () {
   loadStateFromLocalStorage();
@@ -165,7 +171,7 @@ function loadStateFromLocalStorage() {
   hiddenProducts = JSON.parse(localStorage.getItem(HIDDEN_PRODUCTS_KEY)) || [];
   favouriteProducts = JSON.parse(localStorage.getItem(FAVOURITE_PRODUCTS_KEY)) || [];
   comparisonProducts = JSON.parse(localStorage.getItem(COMPARISON_PRODUCTS_KEY)) || [];
-  showHidden = JSON.parse(localStorage.getItem(SHOW_HIDDEN_KEY)) || false;
+  showHidden = JSON.parse(localStorage.getItem(SHOW_HIDDEN_KEY)) || true;
   filterType = JSON.parse(localStorage.getItem(FILTER_TYPE_KEY)) || 'all';
 }
 
@@ -274,12 +280,6 @@ function toggleStatus(event, productId, statusType) {
     specificProducts.splice(index, 1);
     event.currentTarget.classList.remove('product-card__actions-item_active');
   }
-
-  filterProducts(filterType);
-}
-
-function toggleShowHidden() {
-  showHidden = !showHidden;
 
   filterProducts(filterType);
 }
