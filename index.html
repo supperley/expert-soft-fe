@@ -16,27 +16,12 @@
     <main class="page">
       <div class="page__filter product-filter">
         <div class="product-filter__buttons">
-          <button id="allBtn" class="product-filter__button" onclick="filterProducts('all')">
-            All
-          </button>
-          <button id="favBtn" class="product-filter__button" onclick="filterProducts('favourites')">
-            Favourites
-          </button>
-          <button
-            id="compBtn"
-            class="product-filter__button"
-            onclick="filterProducts('comparison')"
-          >
-            Comparison
-          </button>
+          <button id="btnFilterAll" class="product-filter__button">All</button>
+          <button id="btnFilterFavourite" class="product-filter__button">Favourites</button>
+          <button id="btnFilterComparison" class="product-filter__button">Comparison</button>
         </div>
-        <label class="product-filter__checkbox filter-checkbox" for="showHiddenCheckbox">
-          <input
-            class="filter-checkbox__input"
-            type="checkbox"
-            onclick="toggleShowHidden()"
-            id="showHiddenCheckbox"
-          />
+        <label class="product-filter__checkbox filter-checkbox" for="checkboxShowHidden">
+          <input class="filter-checkbox__input" type="checkbox" id="checkboxShowHidden" />
           <span class="filter-checkbox__label">Show hidden</span>
         </label>
       </div>

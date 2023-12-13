@@ -101,6 +101,26 @@ const FILTER_HIDDEN = 'hidden';
 const FILTER_FAVOURITE = 'favourite';
 const FILTER_COMPARISON = 'comparison';
 
+const checkboxShowHidden = document.querySelector('#checkboxShowHidden');
+
+const btnFilterAll = document.querySelector('#btnFilterAll');
+
+btnFilterAll.addEventListener('click', function () {
+  filterProducts(FILTER_ALL);
+});
+
+const btnFilterFavourite = document.querySelector('#btnFilterFavourite');
+
+btnFilterFavourite.addEventListener('click', function () {
+  filterProducts(FILTER_FAVOURITE);
+});
+
+const btnFilterComparison = document.querySelector('#btnFilterComparison');
+
+btnFilterComparison.addEventListener('click', function () {
+  filterProducts(FILTER_COMPARISON);
+});
+
 let productItems = [];
 let hiddenProducts = [];
 let favouriteProducts = [];
@@ -108,20 +128,29 @@ let comparisonProducts = [];
 let showHidden = true;
 let filterType = FILTER_ALL;
 
-const allBtn = document.getElementById('allBtn');
-const favBtn = document.getElementById('favBtn');
-const compBtn = document.getElementById('compBtn');
-
 document.addEventListener('DOMContentLoaded', function () {
   loadStateFromLocalStorage();
 
   if (showHidden) {
-    document.querySelector('.filter-checkbox__input').checked = true;
+    checkboxShowHidden.checked = true;
   }
 
   for (let product of productData) {
     const productItem = createProductItem(product);
     setBadgesState(productItem);
+
+    productItem.querySelector('.action-hide').addEventListener('click', function (event) {
+      toggleStatus(event, product.id, FILTER_HIDDEN);
+    });
+
+    productItem.querySelector('.action-favourite').addEventListener('click', function (event) {
+      toggleStatus(event, product.id, FILTER_FAVOURITE);
+    });
+
+    productItem.querySelector('.action-comparison').addEventListener('click', function (event) {
+      toggleStatus(event, product.id, FILTER_COMPARISON);
+    });
+
     productItems.push(productItem);
   }
 
@@ -157,19 +186,13 @@ function createProductItem(product) {
     <div class="product-item__card product-card">
       <span class="product-card__badge">New</span>
       <div class="product-card__actions">
-        <div class="product-card__actions-item" onclick="toggleStatus(event, '${
-          product.id
-        }', '${FILTER_HIDDEN}')">
+        <div class="product-card__actions-item action-hide">
           <i class="fa-regular fa-eye"></i>
         </div>
-        <div class="product-card__actions-item" onclick="toggleStatus(event, '${
-          product.id
-        }', '${FILTER_FAVOURITE}')">
+        <div class="product-card__actions-item action-favourite">
           <i class="fa-regular fa-heart"></i>
         </div>
-        <div class="product-card__actions-item" onclick="toggleStatus(event, '${
-          product.id
-        }', '${FILTER_COMPARISON}')">
+        <div class="product-card__actions-item action-comparison">
           <i class="fa-solid fa-scale-balanced"></i>
         </div>
       </div>
@@ -215,20 +238,18 @@ function createProductItem(product) {
 
 function setBadgesState(productItem) {
   if (hiddenProducts.includes(productItem.id)) {
-    productItem
-      .querySelector('.product-card__actions-item:nth-child(1)')
-      .classList.add('product-card__actions-item_active');
+    productItem.querySelector('.action-hide').classList.add('product-card__actions-item_active');
   }
 
   if (favouriteProducts.includes(productItem.id)) {
     productItem
-      .querySelector('.product-card__actions-item:nth-child(2)')
+      .querySelector('.action-favourite')
       .classList.add('product-card__actions-item_active');
   }
 
   if (comparisonProducts.includes(productItem.id)) {
     productItem
-      .querySelector('.product-card__actions-item:nth-child(3)')
+      .querySelector('.action-comparison')
       .classList.add('product-card__actions-item_active');
   }
 }
@@ -266,21 +287,21 @@ function toggleShowHidden() {
 function filterProducts(newFilterType) {
   filterType = newFilterType;
 
-  allBtn.classList.remove('product-filter__button_active');
-  favBtn.classList.remove('product-filter__button_active');
-  compBtn.classList.remove('product-filter__button_active');
+  btnFilterAll.classList.remove('product-filter__button_active');
+  btnFilterFavourite.classList.remove('product-filter__button_active');
+  btnFilterComparison.classList.remove('product-filter__button_active');
 
   switch (filterType) {
     case FILTER_ALL:
-      allBtn.classList.add('product-filter__button_active');
+      btnFilterAll.classList.add('product-filter__button_active');
       showProducts();
       break;
     case FILTER_FAVOURITE:
-      favBtn.classList.add('product-filter__button_active');
+      btnFilterFavourite.classList.add('product-filter__button_active');
       showProducts(FILTER_FAVOURITE);
       break;
     case FILTER_COMPARISON:
-      compBtn.classList.add('product-filter__button_active');
+      btnFilterComparison.classList.add('product-filter__button_active');
       showProducts(FILTER_COMPARISON);
       break;
     default:
